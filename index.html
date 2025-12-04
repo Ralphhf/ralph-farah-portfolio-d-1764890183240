@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RALPH FARAH - Computer Science Graduate</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            line-height: 1.4;
+            background: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        /* Grid Background */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0,0,0,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Sticky Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: #ffffff;
+            border-bottom: 4px solid #000000;
+            padding: 1rem 2rem;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 900;
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #000000;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 2px;
+        }
+
+        nav a:hover {
+            color: #ef4444;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: #ef4444;
+            transition: none;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 8rem 2rem 4rem;
+            display: grid;
+            grid-template-columns: 1fr 300px;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-content {
+            transform: rotate(-1deg);
+        }
+
+        .hero-name {
+            font-size: clamp(4rem, 15vw, 12rem);
+            font-weight: 900;
+            line-height: 0.8;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            margin-bottom: 1rem;
+        }
+
+        .hero-name .thin {
+            font-weight: 400;
+        }
+
+        .hero-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: #ef4444;
+            margin-bottom: 2rem;
+            letter-spacing: 2px;
+        }
+
+        .hero-bio {
+            border: 4px solid #000000;
+            padding: 2rem;
+            background: #ffffff;
+            box-shadow: 8px 8px 0 #ef4444;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            transform: rotate(1deg);
+        }
+
+        .hero-photo {
+            justify-self: end;
+            transform: rotate(2deg);
+        }
+
+        .hero-photo img {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            border: 4px solid #000000;
+            box-shadow: 12px 12px 0 #000000;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            text-decoration: underline;
+            text-decoration-thickness: 3px;
+            color: #000000;
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1rem;
+            letter-spacing: 1px;
+        }
+
+        .social-links a:hover {
+            background: #ef4444;
+            color: #ffffff;
+            text-decoration: none;
+            padding: 0.5rem;
+            margin: -0.5rem;
+        }
+
+        /* Download Resume Button */
+        .resume-btn {
+            display: inline-block;
+            background: #000000;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border: 4px solid #000000;
+            box-shadow: 4px 4px 0 #ef4444;
+            margin-top: 2rem;
+        }
+
+        .resume-btn:hover {
+            background: #ef4444;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #000000;
+        }
+
+        /* Section Styles */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 8rem;
+            font-weight: 700;
+            color: #f5f5f5;
+            position: absolute;
+            top: 2rem;
+            left: 2rem;
+            z-index: -1;
+        }
+
+        .section-title {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            margin-bottom: 3rem;
+            letter-spacing: -1px;
+            border-bottom: 4px solid #000000;
+            padding-bottom: 1rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 3rem;
+        }
+
+        .skill-category {
+            border: 4px solid #000000;
+            padding: 2rem;
+            background: #ffffff;
+            box-shadow: 4px 4px 0 #000000;
+        }
+
+        .skill-category:nth-child(odd) {
+            transform: rotate(-1deg);
+            box-shadow: 4px 4px 0 #ef4444;
+        }
+
+        .skill-category:nth-child(even) {
+            transform: rotate(1deg);
+        }
+
+        .skill-category h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: #ef4444;
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-list li {
+            padding: 0.5rem 0;
+            border-bottom: 2px solid #f5f5f5;
+            font-weight: 700;
+        }
+
+        .skill-list li:hover {
+            background: #000000;
+            color: #ffffff;
+            margin: 0 -1rem;
+            padding-left: 1rem;
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .project-card {
+            border: 4px solid #000000;
+            padding: 2rem;
+            background: #ffffff;
+            box-shadow: 8px 8px 0 #ef4444;
+            position: relative;
+        }
+
+        .project-card:hover {
+            transform: translate(-4px, -4px);
+            box-shadow: 12px 12px 0 #ef4444;
+        }
+
+        .project-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+        }
+
+        .project-link {
+            display: inline-block;
+            background: #000000;
+            color: #ffffff;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-top: 1rem;
+        }
+
+        .project-link:hover {
+            background: #ef4444;
+        }
+
+        /* Experience Section */
+        .experience-list {
+            margin-top: 3rem;
+        }
+
+        .experience-item {
+            border: 4px solid #000000;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            background: #ffffff;
+            box-shadow: 4px 4px 0 #000000;
+            position: relative;
+        }
+
+        .experience-item::before {
+            content: '0' counter(experience);
+            counter-increment: experience;
+            position: absolute;
+            top: -10px;
+            left: 2rem;
+            background: #ef4444;
+            color: #ffffff;
+            padding: 0.5rem 1rem;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .experience-list {
+            counter-reset: experience;
+        }
+
+        .job-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-company {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ef4444;
+            margin-bottom: 0.5rem;
+        }
+
+        .job-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .job-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-top: 3rem;
+        }
+
+        .contact-info {
+            border: 4px solid #000000;
+            padding: 2rem;
+            background: #ffffff;
+            box-shadow: 8px 8px 0 #ef4444;
+            height: fit-content;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .contact-details strong {
+            display: block;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            color: #ef4444;
+            margin-bottom: 0.2rem;
+        }
+
+        /* Contact Form */
+        #contactForm {
+            border: 4px solid #000000;
+            padding: 2rem;
+            background: #ffffff;
+            box-shadow: 8px 8px 0 #000000;
+        }
+
+        #contactForm input,
+        #contactForm textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 4px solid #000000;
+            background: #ffffff;
+            font-size: 1rem;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        #contactForm input:focus,
+        #contactForm textarea:focus {
+            outline: none;
+            box-shadow: 4px 4px 0 #ef4444;
+            transform: translate(-2px, -2px);
+        }
+
+        #contactForm textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        #contactForm button {
+            background: #000000;
+            color: #ffffff;
+            padding: 1rem 2rem;
+            border: 4px solid #000000;
+            font-size: 1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 #ef4444;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        #contactForm button:hover {
+            background: #ef4444;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #000000;
+        }
+
+        #formStatus {
+            margin-top: 1rem;
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+                padding: 6rem 1rem 2rem;
+                text-align: center;
+            }
+
+            .hero-photo {
+                justify-self: center;
+            }
+
+            .hero-photo img {
+                width: 250px;
+                height: 300px;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .section-number {
+                font-size: 4rem;
+                top: 1rem;
+                left: 1rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .social-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        @media (max-width: 375px) {
+            .hero-name {
+                font-size: 3rem;
+            }
+            
+            .hero-bio {
+                padding: 1rem;
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        /* Scroll Animations */
+        .animate-in {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.6s ease;
+        }
+
+        .animate-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sticky Header -->
+    <header>
+        <div class="logo">RALPH FARAH</div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-name">RALPH<br><span class="thin">FARAH</span></h1>
+            <p class="hero-title">Computer Science Graduate</p>
+            <div class="hero-bio">
+                I'm a Computer Science graduate with strong proficiency in Python, R, SQL, Java, and C++ seeking roles in data science or software development. I bring solid project management skills, leadership qualities, and extensive experience with data science toolkits including Pandas, Matplotlib, and scikit-learn. My diverse technical background spans from cybersecurity and penetration testing to full-stack web development with React and Angular.
+            </div>
+            <a href="files/resume.pdf" class="resume-btn" download>Download Resume</a>
+            <div class="social-links">
+                <a href="mailto:ralph.farah.career@gmail.com">Email</a>
+                <a href="https://www.linkedin.com/in/ralph-farah-05a60320b/" target="_blank">LinkedIn</a>
+                <a href="https://ralphhf.github.io/Ralphhf-RalphFarahPortfolioWebsite.github.io/" target="_blank">GitHub</a>
+            </div>
+        </div>
+        <div class="hero-photo">
+            <img src="images/profile-1718228711615.jpg" alt="Ralph Farah">
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+        <div class="section-number">01</div>
+        <h2 class="section-title animate-in">About Me</h2>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; margin-top: 3rem;">
+            <div style="border: 4px solid #000; padding: 2rem; box-shadow: 8px 8px 0 #ef4444;" class="animate-in">
+                <h3 style="font-size: 2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem;">Education</h3>
+                <p><strong>Bachelor of Arts (BA) in Computer Science</strong></p>
+                <p>Rutgers, The State University of New Jersey</p>
+                <p style="font-family: 'JetBrains Mono', monospace; color: #ef4444; font-weight: 700;">2024</p>
+            </div>
+            <div style="border: 4px solid #000; padding: 2rem; box-shadow: 8px 8px 0 #000;" class="animate-in">
+                <h3 style="font-size: 2rem; font-weight: 700; text-transform: uppercase; margin-bottom: 1rem;">Location</h3>
+                <p><strong>New Brunswick, NJ 08901</strong></p>
+                <p>Phone: 631.710.8938</p>
+                <p>Email: ralph.farah.career@gmail.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="section-number">02</div>
+        <h2 class="section-title animate-in">Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-category animate-in">
+                <h3>Programming Languages</h3>
+                <ul class="skill-list">
+                    <li>Python</li>
+                    <li>R</li>
+                    <li>SQL</li>
+                    <li>Java</li>
+                    <li>C++</li>
+                    <li>JavaScript</li>
+                    <li>TypeScript</li>
+                    <li>PHP</li>
+                </ul>
+            </div>
+            <div class="skill-category animate-in">
+                <h3>Web Technologies</h3>
+                <ul class="skill-list">
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>React</li>
+                    <li>Angular</li>
+                    <li>Django</li>
+                    <li>WordPress</li>
+                    <li>.NET MVC</li>
+                </ul>
+            </div>
+            <div class="skill-category animate-in">
+                <h3>Data Science</h3>
+                <ul class="skill-list">
+                    <li>Pandas</li>
+                    <li>Matplotlib</li>
+                    <li>Seaborn</li>
+                    <li>NumPy</li>
+                    <li>scikit-learn</li>
+                    <li>PowerBI</li>
+                    <li>SSIS</li>
+                </ul>
+            </div>
+            <div class="skill-category animate-in">
+                <h3>Tools & Systems</h3>
+                <ul class="skill-list">
+                    <li>Kali Linux</li>
+                    <li>Burp Suite</li>
+                    <li>Visual Studio</li>
+                    <li>SQL Server Management</li>
+                    <li>Power Automate</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="section-number">03</div>
+        <h2 class="section-title animate-in">Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card animate-in">
+                <h3 class="project-title">Portfolio Website</h3>
+                <p>Personal portfolio website showcasing projects and skills. Built with modern web technologies and responsive design principles.</p>
+                <a href="https://ralphhf.github.io/Ralphhf-RalphFarahPortfolioWebsite.github.io/" class="project-link" target="_blank">View Project</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section">
+        <div class="section-number">04</div>
+        <h2 class="section-title animate-in">Experience</h2>
+        <div class="experience-list">
+            <div class="experience-item animate-in">
+                <h3 class="job-title">Technical Finance Intern</h3>
+                <p class="job-company">Berkley Custom Insurance Managers</p>
+                <p class="job-date">May 2024 - Aug 2024</p>
+                <p class="job-description">Developed web portals and data interfaces using .NET MVC framework, gained expertise in SQL and SSIS for data manipulation, and used PowerBI for reporting.</p>
+            </div>
+            <div class="experience-item animate-in">
+                <h3 class="job-title">Front Developer Intern</h3>
+                <p class="job-company">MindStaq</p>
+                <p class="job-date">April 2024 - May 2024</p>
+                <p class="job-description">Enhanced skills in Angular, TypeScript, and HTML/CSS through project-based learning, gained experience with Agile development practices and code reviews.</p>
+            </div>
+            <div class="experience-item animate-in">
+                <h3 class="job-title">Cybersecurity Training</h3>
+                <p class="job-company">Semicolon Academy</p>
+                <p class="job-date">Sep 2023 - Dec 2023</p>
+                <p class="job-description">Completed extensive cybersecurity training program covering ethical hacking, penetration testing methodologies, and advanced defense strategies.</p>
+            </div>
+            <div class="experience-item animate-in">
+                <h3 class="job-title">Financial Advisor Assistant</h3>
+                <p class="job-company">CFS Tax Consultant</p>
+                <p class="job-date">Sep 2023 - Dec 2023</p>
+                <p class="job-description">Prepared materials for client meetings and enhanced client understanding through clear communication of complex financial information.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-number">05</div>
+        <h2 class="section-title animate-in">Contact</h2>
+        <div class="contact-content">
+            <div class="contact-info animate-in">
+                <h3>Let's Connect</h3>
+                <ul class="contact-details">
+                    <li>
+                        <strong>Email</strong>
+                        ralph.farah.career@gmail.com
+                    </li>
+                    <li>
+                        <strong>Phone</strong>
+                        631.710.8938
+                    </li>
+                    <li>
+                        <strong>Location</strong>
+                        New Brunswick, NJ 08901
+                    </li>
+                    <li>
+                        <strong>LinkedIn</strong>
+                        <a href="https://www.linkedin.com/in/ralph-farah-05a60320b/" target="_blank">ralph-farah-05a60320b</a>
+                    </li>
+                </ul>
+            </div>
+            <form id="contactForm" class="animate-in">
+                <input type="hidden" name="websiteId" value="f9c0207fb0d8bcf574c7ca278c24625a">
+                <input type="text" name="name" placeholder="Your Name" required>
+                <input type="email" name="email" placeholder="Your Email" required>
+                <textarea name="message" placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+                <div id="formStatus"></div>
+            </form>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animate-in class
+        document.querySelectorAll('.animate-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Mobile menu toggle (if needed)
+        const header = document.querySelector('header');
+        let lastScroll = 0;
+
+        window.addEventListener('scroll', () => {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > lastScroll && currentScroll > 100) {
+                header.style.transform = 'translateY(-100%)';
+            } else {
+                header.style.transform = 'translateY(0)';
+            }
+            
+            lastScroll = currentScroll;
+        });
+
+        // Contact form handler
+        document.getElementById('contactForm').addEventListener('submit', async e => {
+            e.preventDefault();
+            const b = e.target.querySelector('button');
+            b.disabled = true;
+            b.textContent = 'Sending...';
+            
+            try {
+                const r = await fetch('https://no-website-finder.onrender.com/api/form-submit', {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({
+                        websiteId: e.target.querySelector('[name=websiteId]').value,
+                        name: e.target.querySelector('[name=name]').value,
+                        email: e.target.querySelector('[name=email]').value,
+                        phone: '',
+                        message: e.target.querySelector('[name=message]').value
+                    })
+                });
+                
+                const d = await r.json();
+                document.getElementById('formStatus').textContent = d.success ? '✓ Message sent!' : '✗ Error';
+                document.getElementById('formStatus').style.color = d.success ? '#22c55e' : '#ef4444';
+                
+                if (d.success) {
+                    e.target.reset();
+                }
+            } catch (err) {
+                document.getElementById('formStatus').textContent = '✗ Failed';
+                document.getElementById('formStatus').style.color = '#ef4444';
+            }
+            
+            b.disabled = false;
+            b.textContent = 'Send Message';
+        });
+
+        // Add some dynamic interactions
+        document.querySelectorAll('.skill-category').forEach(category => {
+            category.addEventListener('mouseenter', () => {
+                category.style.transform = 'rotate(0deg) scale(1.05)';
+                category.style.zIndex = '10';
+            });
+            
+            category.addEventListener('mouseleave', () => {
+                category.style.transform = category.style.transform.includes('rotate(-1deg)') ? 'rotate(-1deg) scale(1)' : 'rotate(1deg) scale(1)';
+                category.style.zIndex = '1';
+            });
+        });
+    </script>
+</body>
+</html>
